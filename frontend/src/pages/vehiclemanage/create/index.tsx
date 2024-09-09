@@ -11,12 +11,15 @@ import {
   message,
   Upload,
   Image,
+  Select,
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { CarInterface } from "../../../interfaces/ICar";
 import { CreateCar } from "../../../services/https";
 import { useNavigate, Link } from "react-router-dom";
 import { RcFile } from "antd/es/upload/interface";
+
+const { Option } = Select;
 
 function CarCreate() {
   const navigate = useNavigate();
@@ -142,6 +145,38 @@ function CarCreate() {
                 rules={[{ required: true, message: "กรุณากรอกเลขที่ รย.!" }]}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={24} md={12}>
+              <Form.Item
+                label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>สถานะการใช้งาน</span>}
+                name="status"
+                rules={[{ required: true, message: "กรุณาเลือกสถานะการใช้งาน!" }]}
+              >
+                <Select
+                  placeholder="เลือกสถานะ"
+                  style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }}
+                >
+                  <Option value="พร้อมใช้งาน">พร้อมใช้งาน</Option>
+                  <Option value="งดใช้งานชั่วคราว">งดใช้งานชั่วคราว</Option>
+                  <Option value="อยู่ระหว่างซ่อม">อยู่ระหว่างซ่อม</Option>
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={24} md={12}>
+              <Form.Item
+                label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>เลือกประเภทรถ</span>}
+                name="type"
+                rules={[{ required: true, message: "กรุณาเลือกประเภทรถ!" }]}
+              >
+                <Select
+                  placeholder="เลือกประเภทรถ"
+                  style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }}
+                >
+                  <Option value="Eco car">Eco car</Option>
+                  <Option value="Van">Van</Option>
+                  <Option value="Motorcycle">Motorcycle</Option>
+                </Select>
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={12}>

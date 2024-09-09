@@ -11,6 +11,7 @@ import {
   message,
   Typography,
   Upload,
+  Select,
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { CarInterface } from "../../../interfaces/ICar";
@@ -19,6 +20,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import { RcFile } from "antd/es/upload/interface";
 
 const { Title } = Typography;
+const { Option } = Select;
 
 function CarEdit() {
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ function CarEdit() {
           vehicle_identification_number: res.vehicle_identification_number,
           vehicle_registration_number: res.vehicle_registration_number,
           picture: res.picture,
+          status: res.status, // Add status field
         });
         setImage(res.picture);
       } else {
@@ -212,6 +215,22 @@ function CarEdit() {
                 rules={[{ required: true, message: "กรุณากรอกเลขที่ รย.!" }]}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={24} md={12}>
+              <Form.Item
+                label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>สถานะการใช้งาน</span>}
+                name="status"
+                rules={[{ required: true, message: "กรุณาเลือกสถานะการใช้งาน!" }]}
+              >
+                <Select
+                  placeholder="เลือกสถานะ"
+                  style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }}
+                >
+                  <Option value="พร้อมใช้งาน">พร้อมใช้งาน</Option>
+                  <Option value="งดใช้งานชั่วคราว">งดใช้งานชั่วคราว</Option>
+                  <Option value="อยู่ระหว่างซ่อม">อยู่ระหว่างซ่อม</Option>
+                </Select>
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={12}>

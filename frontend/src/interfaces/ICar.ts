@@ -8,5 +8,7 @@ export interface CarInterface {
   Color?: string;
   VIN?: string;
   VRN?: string;
+  Status?: string;
+  Type?: string;
   Picture?: string;
 }

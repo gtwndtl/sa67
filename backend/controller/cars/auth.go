@@ -19,7 +19,10 @@ type (
         Color        string `json:"color"`
         VIN          string `json:"vehicle_identification_number"`
         VRN          string `json:"vehicle_registration_number"`
+        Status  string  `json:"status"`
+        Type string `json:"type"`
         Picture      string `json:"picture"`
+        
     }
 )
 
@@ -59,7 +62,10 @@ func AddCar(c *gin.Context) {
         Color:        payload.Color,
         VIN:          payload.VIN,
         VRN:          payload.VRN,
+        Status: payload.Status,
+        Type: payload.Type,
         Picture:      payload.Picture,
+        
     }
 
     // Save the car to the database
