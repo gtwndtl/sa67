@@ -25,6 +25,7 @@ import { GetCars, DeleteCarById } from "../../services/https";
 import { CarInterface } from "../../interfaces/ICar";
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar } from 'antd';
+import Loader from "../../components/third-patry/Loader"; // Import the Loader component
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -177,16 +178,24 @@ function VehicleManage() {
   const [selectedStatus, setSelectedStatus] = useState<string | undefined>(undefined);
   const [selectedType, setSelectedType] = useState<string | undefined>(undefined);
   const [viewType, setViewType] = useState('list');
+  const [loading, setLoading] = useState(true); // State for loading
   const [messageApi, contextHolder] = message.useMessage();
 
   const getCars = async () => {
-    let res = await GetCars();
-    if (res.length > 0) {
-      setCars(res);
-      setFilteredCars(res);
-    } else {
-      setCars([]);
-      setFilteredCars([]);
+    setLoading(true); // Show loader
+    try {
+      let res = await GetCars();
+      if (res.length > 0) {
+        setCars(res);
+        setFilteredCars(res);
+      } else {
+        setCars([]);
+        setFilteredCars([]);
+      }
+    } catch (error) {
+      messageApi.error("Failed to fetch cars");
+    } finally {
+      setLoading(false); // Hide loader
     }
   };
 
@@ -222,6 +231,7 @@ function VehicleManage() {
   return (
     <>
       {contextHolder}
+      {loading && <Loader />} {/* Show loader when loading */}
       <div style={{ fontFamily: styles.fontFamily, minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <div style={styles.container}>
           <Row>
@@ -367,16 +377,35 @@ function VehicleManage() {
                       avatar={<img src={car.picture} alt="Car" style={styles.listItemImage} />}
                       title={<Text style={styles.listTitle}>{car.license_plate}</Text>}
                       description={
-                        <div>
-                          <Text style={{ fontFamily: styles.fontFamily }}>จังหวัด: {car.province}</Text><br />
-                          <Text style={{ fontFamily: styles.fontFamily }}>แบรนด์: {car.brands}</Text><br />
-                          <Text style={{ fontFamily: styles.fontFamily }}>รุ่น: {car.models}</Text><br />
-                          <Text style={{ fontFamily: styles.fontFamily }}>ปี: {car.model_year}</Text><br />
-                          <Text style={{ fontFamily: styles.fontFamily }}>สี: {car.color}</Text><br />
-                          <Text style={{ fontFamily: styles.fontFamily }}>เลขตัวถัง: {car.vehicle_identification_number}</Text><br />
-                          <Text style={{ fontFamily: styles.fontFamily }}>เลขที่รย. : {car.vehicle_registration_number}</Text><br />
-                          <Text style={{ fontFamily: styles.fontFamily }}>สถานะ : {car.status}</Text><br />
-                        </div>
+                        <Row gutter={16}>
+                          <Col span={6}>
+                            <Text style={{ fontFamily: styles.fontFamily }}>จังหวัด: {car.province}</Text>
+                          </Col>
+                          <Col span={6}>
+                            <Text style={{ fontFamily: styles.fontFamily }}>แบรนด์: {car.brands}</Text>
+                          </Col>
+                          <Col span={6}>
+                            <Text style={{ fontFamily: styles.fontFamily }}>รุ่น: {car.models}</Text>
+                          </Col>
+                          <Col span={6}>
+                            <Text style={{ fontFamily: styles.fontFamily }}>ปี: {car.model_year}</Text>
+                          </Col>
+                          <Col span={6}>
+                            <Text style={{ fontFamily: styles.fontFamily }}>สี: {car.color}</Text>
+                          </Col>
+                          <Col span={6}>
+                            <Text style={{ fontFamily: styles.fontFamily }}>เลขตัวถัง: {car.vehicle_identification_number}</Text>
+                          </Col>
+                          <Col span={6}>
+                            <Text style={{ fontFamily: styles.fontFamily }}>เลขที่รย. : {car.vehicle_registration_number}</Text>
+                          </Col>
+                          <Col span={6}>
+                            <Text style={{ fontFamily: styles.fontFamily }}>ราคา/วัน. : {car.price}</Text>
+                          </Col>
+                          <Col span={6}>
+                            <Text style={{ fontFamily: styles.fontFamily }}>สถานะ : {car.status}</Text>
+                          </Col>
+                        </Row>
                       }
                     />
                     <div style={{

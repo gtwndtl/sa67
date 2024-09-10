@@ -6,12 +6,6 @@ html, body, #root {
   margin: 0;
 }
 
-/* Apply to the body for global text styling */
-body {
-  margin: 0;
-  font-family: 'Kanit', sans-serif; /* Global font family */
-}
-
 /* Apply to the entire login area */
 .login {
   margin: 0;
@@ -21,11 +15,6 @@ body {
   font-family: 'Kanit', sans-serif; /* Font for login area */
 }
 
-/* Apply to header text */
-.header {
-  text-align: center;
-  font-family: 'Kanit', sans-serif; /* Font for header */
-}
 
 /* Apply to login card */
 .card-login {

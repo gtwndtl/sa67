@@ -5,7 +5,7 @@ import FullLayout from "../layout/FullLayout";
 
 // Lazy load the components
 const MainPages = Loadable(lazy(() => import("../pages/authentication/Login")));
-const Dashboard = Loadable(lazy(() => import("../pages/home")));
+const Home = Loadable(lazy(() => import("../pages/home")));
 const Vehiclemanage = Loadable(lazy(() => import("../pages/vehiclemanage")));
 const ProfilePage = Loadable(lazy(() => import("../pages/profile")));
 const CreateCar = Loadable(lazy(() => import("../pages/vehiclemanage/create")));
@@ -18,7 +18,7 @@ const AdminRoutes = (isLoggedIn: boolean): RouteObject => {
     children: [
       {
         path: "/",
-        element: <Dashboard />,
+        element: <Home />,
       },
       {
         path: "/vehiclemanage",

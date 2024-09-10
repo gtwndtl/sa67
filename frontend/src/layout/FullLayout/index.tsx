@@ -4,11 +4,11 @@ import "../../App.css";
 import { UserOutlined, DashboardOutlined, DownOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, Button, message, Dropdown } from "antd";
 import logo from "../../assets/logo.png";
-import Dashboard from "../../pages/home";
+import Home from "../../pages/home";
 import VehicleManage from "../../pages/vehiclemanage";
 import CarCreate from "../../pages/vehiclemanage/create";
 import CarEdit from "../../pages/vehiclemanage/edit";
-import ProfilePage from "../../pages/profile"; // Import your ProfilePage component
+import ProfilePage from "../../pages/profile";
 
 const { Header, Content, Footer } = Layout;
 
@@ -105,7 +105,7 @@ const FullLayout: React.FC = () => {
               <Menu
                 theme="dark"
                 mode="horizontal"
-                defaultSelectedKeys={[page ? page : "dashboard"]}
+                defaultSelectedKeys={[page ? page : "home"]}
                 style={{ 
                   background: "transparent", 
                   border: 'none', 
@@ -115,19 +115,20 @@ const FullLayout: React.FC = () => {
                 }}
               >
                 <Menu.Item
-                  key="dashboard"
-                  onClick={() => setCurrentPage("dashboard")}
+                  key="home"
+                  onClick={() => setCurrentPage("home")}
                   style={{ 
                     borderRadius: '4px', 
                     transition: 'background 0.3s', 
-                    background: page === "dashboard" ? "#1a2a40" : "transparent",
+                    background: page === "home" ? "#1a2a40" : "transparent",
                     marginRight: '16px', 
-                    color: '#FFD700'
+                    color: '#FFD700',
                   }}
+                  className="menu-item"
                 >
                   <Link to="/" style={{ display: 'flex', alignItems: 'center', color: '#FFD700', fontFamily: 'Kanit, sans-serif' }}>
                     <DashboardOutlined style={{ marginRight: '8px' }} />
-                    <span>RentCar</span>
+                    <span>Home</span>
                   </Link>
                 </Menu.Item>
                 <Menu.Item
@@ -139,6 +140,7 @@ const FullLayout: React.FC = () => {
                     background: page === "vehiclemanage" ? "#1a2a40" : "transparent",
                     color: '#FFD700'
                   }}
+                  className="menu-item"
                 >
                   <Link to="/vehiclemanage" style={{ display: 'flex', alignItems: 'center', color: '#FFD700', fontFamily: 'Kanit, sans-serif' }}>
                     <UserOutlined style={{ marginRight: '8px' }} />
@@ -170,17 +172,23 @@ const FullLayout: React.FC = () => {
           </div>
         </Header>
 
-        <Layout style={{ marginTop: "80px", display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <Content style={{ flex: 1, margin: "0", padding: '16px', background: "#FFFFFF", minHeight: 'calc(100vh - 80px - 64px)' }}>
+        <Layout style={{ marginTop: "48px", display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <Content style={{ 
+            flex: 1, 
+            padding: 0,
+            margin: 0,
+            background: "#FFFFFF",
+            minHeight: 'calc(100vh - 80px - 64px)',
+            overflow: "hidden",
+          }}>
             <Breadcrumb style={{ margin: "16px 0" }} />
-            <div
-            >
+            <div>
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/vehiclemanage" element={<VehicleManage />} />
                 <Route path="/vehiclemanage/create" element={<CarCreate />} />
                 <Route path="/vehiclemanage/edit/:id" element={<CarEdit />} />
-                <Route path="/profile" element={<ProfilePage />} /> {/* Add route for profile page */}
+                <Route path="/profile" element={<ProfilePage />} />
               </Routes>
             </div>
           </Content>
