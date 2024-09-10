@@ -78,7 +78,7 @@ const FullLayout: React.FC = () => {
   );
 
   return (
-    <Layout style={{ minHeight: "100vh", minWidth: "100vw", fontFamily: 'Kanit, sans-serif' }}>
+    <Layout style={{ minHeight: "100vh", fontFamily: 'Kanit, sans-serif', backgroundColor: '#003366' }}>
       {contextHolder}
       <Layout style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <Header style={{ background: "#003366", height: "80px", padding: "0 16px", position: 'fixed', width: '100%', top: 0, zIndex: 1000 }}>
@@ -107,7 +107,7 @@ const FullLayout: React.FC = () => {
                 mode="horizontal"
                 defaultSelectedKeys={[page ? page : "dashboard"]}
                 style={{ 
-                  background: "#003366", 
+                  background: "transparent", 
                   border: 'none', 
                   marginRight: '16px',
                   lineHeight: '64px',
@@ -171,14 +171,9 @@ const FullLayout: React.FC = () => {
         </Header>
 
         <Layout style={{ marginTop: "80px", display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <Content style={{ flex: 1, margin: "16px", overflow: 'auto' }}>
+          <Content style={{ flex: 1, margin: "0", padding: '16px', background: "#FFFFFF", minHeight: 'calc(100vh - 80px - 64px)' }}>
             <Breadcrumb style={{ margin: "16px 0" }} />
             <div
-              style={{
-                padding: 50,
-                background: "#f0f2f5",
-                minHeight: 'calc(100vh - 80px - 64px)', // Adjust height to fit within viewport
-              }}
             >
               <Routes>
                 <Route path="/" element={<Dashboard />} />

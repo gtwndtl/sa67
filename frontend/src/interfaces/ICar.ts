@@ -10,5 +10,6 @@ export interface CarInterface {
   VRN?: string;
   Status?: string;
   Type?: string;
+  Price?: number;
   Picture?: string;
 }

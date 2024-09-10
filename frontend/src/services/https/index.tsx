@@ -62,118 +62,118 @@ async function SignUp(data: SignUpInterface) {
 }
 
 
-// async function GetUsers() {
+async function GetUsers() {
 
-//  const requestOptions = {
+ const requestOptions = {
 
-//    method: "GET",
+   method: "GET",
 
-//    headers: {
+   headers: {
 
-//      "Content-Type": "application/json",
+     "Content-Type": "application/json",
 
-//      Authorization: `${Bearer} ${Authorization}`,
+     Authorization: `${Bearer} ${Authorization}`,
 
-//    },
+   },
 
-//  };
-
-
-//  let res = await fetch(`${apiUrl}/users`, requestOptions).then((response) =>
-
-//    response.json()
-
-//  );
-
-//  return res;
-
-// }
+ };
 
 
-// async function GetUsersById(id: string) {
+ let res = await fetch(`${apiUrl}/users`, requestOptions).then((response) =>
 
-//  const requestOptions = {
+   response.json()
 
-//    method: "GET",
+ );
 
-//    headers: {
+ return res;
 
-//      "Content-Type": "application/json",
-
-//      Authorization: `${Bearer} ${Authorization}`,
-
-//    },
-
-//  };
+}
 
 
-//  let res = await fetch(`${apiUrl}/user/${id}`, requestOptions).then(
+async function GetUsersById(id: string) {
 
-//    (response) => response.json()
+ const requestOptions = {
 
-//  );
+   method: "GET",
 
-//  return res;
+   headers: {
 
-// }
+     "Content-Type": "application/json",
 
+     Authorization: `${Bearer} ${Authorization}`,
 
-// async function UpdateUsersById(id: string, data: UsersInterface) {
+   },
 
-//  const requestOptions = {
-
-//    method: "PUT",
-
-//    headers: {
-
-//      "Content-Type": "application/json",
-
-//      Authorization: `${Bearer} ${Authorization}`,
-
-//    },
-
-//    body: JSON.stringify(data),
-
-//  };
+ };
 
 
-//  let res = await fetch(`${apiUrl}/user/${id}`, requestOptions).then(
+ let res = await fetch(`${apiUrl}/user/${id}`, requestOptions).then(
 
-//    (response) => response.json()
+   (response) => response.json()
 
-//  );
+ );
 
-//  return res;
+ return res;
 
-// }
-
-
-// async function DeleteUsersById(id: string) {
-
-//  const requestOptions = {
-
-//    method: "DELETE",
-
-//    headers: {
-
-//      "Content-Type": "application/json",
-
-//      Authorization: `${Bearer} ${Authorization}`,
-
-//    },
-
-//  };
+}
 
 
-//  let res = await fetch(`${apiUrl}/user/${id}`, requestOptions).then(
+async function UpdateUsersById(id: string, data: UsersInterface) {
 
-//    (response) => response.json()
+ const requestOptions = {
 
-//  );
+   method: "PUT",
 
-//  return res;
+   headers: {
 
-// }
+     "Content-Type": "application/json",
+
+     Authorization: `${Bearer} ${Authorization}`,
+
+   },
+
+   body: JSON.stringify(data),
+
+ };
+
+
+ let res = await fetch(`${apiUrl}/user/${id}`, requestOptions).then(
+
+   (response) => response.json()
+
+ );
+
+ return res;
+
+}
+
+
+async function DeleteUsersById(id: string) {
+
+ const requestOptions = {
+
+   method: "DELETE",
+
+   headers: {
+
+     "Content-Type": "application/json",
+
+     Authorization: `${Bearer} ${Authorization}`,
+
+   },
+
+ };
+
+
+ let res = await fetch(`${apiUrl}/user/${id}`, requestOptions).then(
+
+   (response) => response.json()
+
+ );
+
+ return res;
+
+}
 
 
 async function CreateUser(data: UsersInterface) {
@@ -346,29 +346,16 @@ async function CreateCar(data: CarInterface) {
 
 
 export {
-
- SignIn,
-
- SignUp,
-
- //GetUsers,
-
- //GetUsersById,
-
- //UpdateUsersById,
-
- //DeleteUsersById,
-
- CreateUser,
-
- CreateCar,
-
- GetCars,
-
- GetCarById,
-
- UpdateCarById,
-
- DeleteCarById,
-
+  SignIn,
+  SignUp,
+  GetUsers,
+  GetUsersById,
+  UpdateUsersById,
+  DeleteUsersById,
+  CreateUser,
+  CreateCar,
+  GetCars,
+  GetCarById,
+  UpdateCarById,
+  DeleteCarById,
 };

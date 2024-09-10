@@ -19,5 +19,7 @@ export interface UsersInterface {
     GenderID?: number;
    
     Password?: string;
+
+    Roles?: string;
    
    }
