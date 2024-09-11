@@ -40,7 +40,7 @@ const overlayStyle: React.CSSProperties = {
 
 const App: React.FC = () => (
   <div style={{ position: 'relative', height: '778px' }}>
-    <Carousel autoplay style={carouselStyle}>
+     <Carousel autoplay autoplaySpeed={2000} style={carouselStyle}>
       <div>
         <div style={contentStyle}>
           <img src={w1} alt="Wallpaper Slide 1" style={logoStyle} />

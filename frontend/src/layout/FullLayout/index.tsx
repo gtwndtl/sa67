@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import "../../App.css";
+import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import { UserOutlined, DashboardOutlined, DownOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, Button, message, Dropdown } from "antd";
 import logo from "../../assets/logo.png";
@@ -14,6 +13,7 @@ const { Header, Content, Footer } = Layout;
 
 const FullLayout: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation(); // Added to get current route
   const page = localStorage.getItem("page");
   const [messageApi, contextHolder] = message.useMessage();
   const [collapsed, setCollapsed] = useState(false);
@@ -34,7 +34,8 @@ const FullLayout: React.FC = () => {
     if (e.key === "logout") {
       Logout();
     } else if (e.key === "profile") {
-      navigate('/profile'); // Navigate to the profile page
+      setCurrentPage("profile"); // Set page to profile
+      navigate("/profile");
     }
   };
 
@@ -106,6 +107,7 @@ const FullLayout: React.FC = () => {
                 theme="dark"
                 mode="horizontal"
                 defaultSelectedKeys={[page ? page : "home"]}
+                selectedKeys={[location.pathname]} // Set selected key based on current path
                 style={{ 
                   background: "transparent", 
                   border: 'none', 
@@ -115,12 +117,12 @@ const FullLayout: React.FC = () => {
                 }}
               >
                 <Menu.Item
-                  key="home"
+                  key="/"
                   onClick={() => setCurrentPage("home")}
                   style={{ 
                     borderRadius: '4px', 
                     transition: 'background 0.3s', 
-                    background: page === "home" ? "#1a2a40" : "transparent",
+                    background: location.pathname === "/" ? "#1a2a40" : "transparent",
                     marginRight: '16px', 
                     color: '#FFD700',
                   }}
@@ -132,12 +134,12 @@ const FullLayout: React.FC = () => {
                   </Link>
                 </Menu.Item>
                 <Menu.Item
-                  key="vehiclemanage"
+                  key="/vehiclemanage"
                   onClick={() => setCurrentPage("vehiclemanage")}
                   style={{ 
                     borderRadius: '4px', 
                     transition: 'background 0.3s', 
-                    background: page === "vehiclemanage" ? "#1a2a40" : "transparent",
+                    background: location.pathname === "/vehiclemanage" ? "#1a2a40" : "transparent",
                     color: '#FFD700'
                   }}
                   className="menu-item"

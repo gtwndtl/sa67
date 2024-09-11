@@ -36,7 +36,11 @@ const styles = {
     margin: '0 auto',
     padding: '20px',
     backgroundColor: '#FFFFFF',
+    border: '2px solid #003366',  // เพิ่มกรอบสีน้ำเงิน
+    borderRadius: '8px',          // เพิ่มขอบมน
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',  // เพิ่มเงาเพื่อให้ดูยกระดับขึ้น
   },
+
   headerActions: {
     textAlign: 'end',
   },
@@ -240,14 +244,6 @@ function VehicleManage() {
             </Col>
             <Col span={12} style={styles.headerActions}>
               <Space>
-                <Button
-                  type="default"
-                  icon={viewType === 'list' ? <AppstoreAddOutlined /> : <UnorderedListOutlined />}
-                  onClick={() => setViewType(viewType === 'list' ? 'card' : 'list')}
-                  style={styles.addButton}
-                >
-                  {viewType === 'list' ? 'Card View' : 'List View'}
-                </Button>
                 <Link to="/vehiclemanage/create">
                   <Button type="primary" icon={<PlusOutlined />} style={styles.addButton}>
                     Add
@@ -258,6 +254,16 @@ function VehicleManage() {
           </Row>
           <Divider />
           <Row style={styles.searchRow}>
+          <Col span={10}>
+          <Button
+                  type="default"
+                  icon={viewType === 'list' ? <AppstoreAddOutlined /> : <UnorderedListOutlined />}
+                  onClick={() => setViewType(viewType === 'list' ? 'card' : 'list')}
+                  style={styles.addButton}
+                >
+                  {viewType === 'list' ? 'Card View' : 'List View'}
+                </Button>
+                </Col>
             <Col span={8}>
               <Input
                 placeholder="Search"
