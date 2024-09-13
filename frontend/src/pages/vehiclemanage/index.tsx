@@ -45,7 +45,7 @@ const styles = {
     textAlign: 'end',
   },
   searchRow: {
-    marginBottom: '20px',
+    marginBottom: '10px',
     display: 'flex',
     justifyContent: 'flex-end',
   },
@@ -62,9 +62,9 @@ const styles = {
     fontFamily: 'Kanit, sans-serif',
   },
   searchInput: {
-    fontSize: '16px',
+    fontSize: '14px',
     width: '100%',
-    marginBottom: '16px',
+    marginBottom: '14px',
     fontFamily: 'Kanit, sans-serif',
   },
   filterSelect: {
@@ -75,6 +75,7 @@ const styles = {
   carLicense: {
     fontSize: '18px',
     fontFamily: 'Kanit, sans-serif',
+    fontWeight: 'bold',
   },
   listTitle: {
     fontSize: '16px',
@@ -117,6 +118,9 @@ const styles = {
     fontFamily: 'Kanit, sans-serif',
     border: '3px solid #d9d9d9', // Add border to Card
   },
+  cardContainer: {
+    position: 'relative', // Allows absolute positioning inside this container
+  },
   cardCover: {
     height: '180px',
     objectFit: 'cover',
@@ -148,11 +152,11 @@ const styles = {
   },
   statusBadge: {
     position: 'absolute',
-    top: '16px',
-    right: '16px',
+    top: '2px',
+    right: '2px',
     width: '16px',
     height: '16px',
-    borderRadius: '50%',
+    borderRadius: '100%',
     backgroundColor: '#ccc',
   },
   statusBadgeReady: {
@@ -266,7 +270,7 @@ function VehicleManage() {
                 </Col>
             <Col span={8}>
               <Input
-                placeholder="Search"
+                placeholder="ค้นหา"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 style={styles.searchInput}
@@ -275,25 +279,25 @@ function VehicleManage() {
             </Col>
             <Col span={3}>
               <Select
-                placeholder="Select Status"
+                placeholder="สถานะ"
                 value={selectedStatus}
                 onChange={(value) => setSelectedStatus(value)}
                 style={styles.filterSelect}
               >
-                <Option value={undefined}>Status</Option>
-                <Option value="พร้อมใช้งาน">Ready</Option>
-                <Option value="งดใช้งานชั่วคราว">Not Available</Option>
-                <Option value="อยู่ระหว่างซ่อม">In Repair</Option>
+                <Option value={undefined}>ทั้งหมด</Option>
+                <Option value="พร้อมใช้งาน">พร้อมใช้งาน</Option>
+                <Option value="งดใช้งานชั่วคราว">งดใช้งานชั่วคราว</Option>
+                <Option value="อยู่ระหว่างซ่อม">อยู่ระหว่างซ่อม</Option>
               </Select>
             </Col>
             <Col span={3}>
               <Select
-                placeholder="Select Type"
+                placeholder="ประเภท"
                 value={selectedType}
                 onChange={(value) => setSelectedType(value)}
                 style={styles.filterSelect}
               >
-                <Option value={undefined}>Type</Option>
+                <Option value={undefined}>ทั้งหมด</Option>
                 <Option value="Eco car">Eco Car</Option>
                 <Option value="Van">Van</Option>
                 <Option value="Motorcycle">Motorcycle</Option>
