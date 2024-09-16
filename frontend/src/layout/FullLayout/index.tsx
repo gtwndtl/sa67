@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import { UserOutlined, DashboardOutlined, DownOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, Button, message, Dropdown } from "antd";
@@ -8,15 +8,46 @@ import VehicleManage from "../../pages/vehiclemanage";
 import CarCreate from "../../pages/vehiclemanage/create";
 import CarEdit from "../../pages/vehiclemanage/edit";
 import ProfilePage from "../../pages/profile";
+import { GetUsers } from "../../services/https/index";
 
 const { Header, Content, Footer } = Layout;
 
 const FullLayout: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // Added to get current route
+  const location = useLocation();
   const page = localStorage.getItem("page");
   const [messageApi, contextHolder] = message.useMessage();
   const [collapsed, setCollapsed] = useState(false);
+  const myId = localStorage.getItem("id");
+  const [roles, setRoles] = useState<number | null>(null);
+
+  useEffect(() => {
+    // Fetch the user data and set roles
+    const fetchUserData = async () => {
+      try {
+        const res = await getUserById(myId); // Assuming myId is available and getUserById fetches the user data
+        if (res) {
+          setRoles(res.roles);  // Make sure res contains the roles
+        }
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+
+    fetchUserData();
+  }, [myId]);  // Ensure myId is passed as a dependency
+
+  // Function to get user data by ID
+  const getUserById = async (id: string) => {
+    try {
+      const res = await GetUsers();
+      const userData = res.find(user => user.ID === Number(id));
+      return userData; // return user data instead of setting it directly here
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      return null;  // return null if there is an error
+    }
+  };
 
   const setCurrentPage = (val: string) => {
     localStorage.setItem("page", val);
@@ -26,7 +57,7 @@ const FullLayout: React.FC = () => {
     localStorage.clear();
     messageApi.success("Logout successful");
     setTimeout(() => {
-      navigate("/"); // Redirect to home page after logout
+      navigate("/");
     }, 2000);
   };
 
@@ -34,7 +65,7 @@ const FullLayout: React.FC = () => {
     if (e.key === "logout") {
       Logout();
     } else if (e.key === "profile") {
-      setCurrentPage("profile"); // Set page to profile
+      setCurrentPage("profile");
       navigate("/profile");
     }
   };
@@ -100,7 +131,7 @@ const FullLayout: React.FC = () => {
             >
               <img src={logo} alt="Logo" style={{ width: "60px", height: "auto", marginRight: "16px" }} />
             </div>
-            
+
             {/* Right Section: Menu and User Dropdown */}
             <div style={{ display: "flex", alignItems: "center" }}>
               <Menu
@@ -133,22 +164,26 @@ const FullLayout: React.FC = () => {
                     <span>Home</span>
                   </Link>
                 </Menu.Item>
-                <Menu.Item
-                  key="/vehiclemanage"
-                  onClick={() => setCurrentPage("vehiclemanage")}
-                  style={{ 
-                    borderRadius: '4px', 
-                    transition: 'background 0.3s', 
-                    background: location.pathname === "/vehiclemanage" ? "#1a2a40" : "transparent",
-                    color: '#FFD700'
-                  }}
-                  className="menu-item"
-                >
-                  <Link to="/vehiclemanage" style={{ display: 'flex', alignItems: 'center', color: '#FFD700', fontFamily: 'Kanit, sans-serif' }}>
-                    <UserOutlined style={{ marginRight: '8px' }} />
-                    <span>Vehicle Management</span>
-                  </Link>
-                </Menu.Item>
+
+                {/* Conditionally render Vehicle Management */}
+                {roles !== 1 && (
+                  <Menu.Item
+                    key="/vehiclemanage"
+                    onClick={() => setCurrentPage("vehiclemanage")}
+                    style={{ 
+                      borderRadius: '4px', 
+                      transition: 'background 0.3s', 
+                      background: location.pathname === "/vehiclemanage" ? "#1a2a40" : "transparent",
+                      color: '#FFD700'
+                    }}
+                    className="menu-item"
+                  >
+                    <Link to="/vehiclemanage" style={{ display: 'flex', alignItems: 'center', color: '#FFD700', fontFamily: 'Kanit, sans-serif' }}>
+                      <UserOutlined style={{ marginRight: '8px' }} />
+                      <span>Vehicle Management</span>
+                    </Link>
+                  </Menu.Item>
+                )}
               </Menu>
               <Dropdown overlay={userMenu} trigger={['click']} placement="bottomRight">
                 <Button

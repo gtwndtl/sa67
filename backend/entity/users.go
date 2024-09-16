@@ -9,7 +9,7 @@ type Users struct {
 	gorm.Model
 	FirstName string `json:"first_name"`
 	LastName string `json:"last_name"`
-	Roles string `json:"roles"`
+	Roles uint `json:"roles"`
 	Email string `json:"email"`
 	Age uint8 `json:"age"`
 	Password string `json:"-"`

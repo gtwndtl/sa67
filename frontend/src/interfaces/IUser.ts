@@ -7,6 +7,8 @@ export interface UsersInterface {
     LastName?: string;
    
     Email?: string;
+
+    Roles?: number;
    
     Phone?: string;
    
@@ -20,6 +22,5 @@ export interface UsersInterface {
    
     Password?: string;
 
-    Roles?: string;
    
    }

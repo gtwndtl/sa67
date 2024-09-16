@@ -151,12 +151,13 @@ function CarEdit() {
           </Col>
         </Row>
         <Form name="basic" form={form} layout="vertical" onFinish={onFinish} autoComplete="off">
-          <Row gutter={[16, 16]}>
+          <Row gutter={[8,8]}>
           <Col xs={24} sm={24} md={12}>
               <Form.Item
                 label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>ทะเบียนรถ</span>}
                 name="license_plate"
                 rules={[{ required: true, message: "กรุณากรอกทะเบียนรถ!" }]}
+                style={{ marginBottom: "12px" }}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
               </Form.Item>
@@ -166,6 +167,7 @@ function CarEdit() {
                 label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>จังหวัด</span>}
                 name="province"
                 rules={[{ required: true, message: "กรุณากรอกจังหวัด!" }]}
+                style={{ marginBottom: "12px" }}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
               </Form.Item>
@@ -175,6 +177,7 @@ function CarEdit() {
                 label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>ยี่ห้อ</span>}
                 name="brands"
                 rules={[{ required: true, message: "กรุณากรอกยี่ห้อ!" }]}
+                style={{ marginBottom: "12px" }}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
               </Form.Item>
@@ -184,6 +187,7 @@ function CarEdit() {
                 label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>รุ่น</span>}
                 name="models"
                 rules={[{ required: true, message: "กรุณากรอกรุ่น!" }]}
+                style={{ marginBottom: "12px" }}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
               </Form.Item>
@@ -193,6 +197,7 @@ function CarEdit() {
                 label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>ปี</span>}
                 name="model_year"
                 rules={[{ required: true, message: "กรุณากรอกปี!" }]}
+                style={{ marginBottom: "12px" }}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
               </Form.Item>
@@ -202,6 +207,7 @@ function CarEdit() {
                 label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>สี</span>}
                 name="color"
                 rules={[{ required: true, message: "กรุณากรอกสี!" }]}
+                style={{ marginBottom: "12px" }}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
               </Form.Item>
@@ -211,6 +217,7 @@ function CarEdit() {
                 label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>เลขตัวรถ</span>}
                 name="vehicle_identification_number"
                 rules={[{ required: true, message: "กรุณากรอกเลขตัวรถ!" }]}
+                style={{ marginBottom: "12px" }}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
               </Form.Item>
@@ -220,6 +227,7 @@ function CarEdit() {
                 label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>เลขที่ รย.</span>}
                 name="vehicle_registration_number"
                 rules={[{ required: true, message: "กรุณากรอกเลขที่ รย.!" }]}
+                style={{ marginBottom: "12px" }}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
               </Form.Item>
@@ -229,6 +237,7 @@ function CarEdit() {
                 label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>สถานะการใช้งาน</span>}
                 name="status"
                 rules={[{ required: true, message: "กรุณาเลือกสถานะการใช้งาน!" }]}
+                style={{ marginBottom: "12px" }}
               >
                 <Select
                   placeholder="เลือกสถานะ"
@@ -245,6 +254,7 @@ function CarEdit() {
                 label={<span style={{ fontSize: '16px', color: '#003366', fontFamily: 'Kanit, sans-serif' }}>ราคา/วัน.</span>}
                 name="price"
                 rules={[{ required: true, message: "กรุณากรอกราคา/วัน!" }]}
+                style={{ marginBottom: "12px" }}
               >
                 <Input style={{ fontSize: '16px', borderRadius: '8px', border: '1px solid #003366' }} />
               </Form.Item>
